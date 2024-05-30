@@ -2,15 +2,29 @@ import React, {useState} from "react";
 import refresh from '../image/reset.png'
 import add from '../image/Vector.png'
 import './Component Style.css'
-import PayDetailsComponents from "./PayDetailsComponents";
 import cancel from "../image/clear.png";
 const salaryForm = ({payEarning,payDeduction,setBasic}) =>{
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [earningList,setEarning] = useState([{id:0,title:'Payment',amount:1000,isCheck:true},{id:1,title:'Payment',amount:1000,isCheck:true}]);
+    const [earningList,setEarning] = useState([{id:0,title:'Travel',amount:10000,isCheck:true},{id:1,title:'',amount:'',isCheck:false}]);
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [deductionList,setDeduction] = useState([]);
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [basicSalary,setSalary] = useState([]);
+
+    function handleBasic(value){
+        const numericValue = parseCurrency(value);
+        setSalary(numericValue);
+        setBasic(numericValue);
+    }
 
 
+    const formatCurrency = (value) => {
+        return value.toLocaleString('en-US', { style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    };
+
+    const parseCurrency = (value) => {
+        return parseFloat(value.replace(/,/g, ''));
+    };
 
     let earningID = earningList.length;
     let deductionID = deductionList.length;
@@ -32,20 +46,34 @@ const salaryForm = ({payEarning,payDeduction,setBasic}) =>{
     }
 
     function setTitle(isEarning,key,value){
-        setEarning(prevList =>
-            prevList.map((item, index) =>
-                index === key ? { ...item, title: value } : item
-            )
+        (isEarning)?
+            setEarning(prevList =>
+                prevList.map((item, index) =>
+                    index === key ? { ...item, title: value } : item
+                )
+        ):
+            setDeduction(prevList =>
+                prevList.map((item, index) =>
+                    index === key ? { ...item, title: value } : item
+                )
         );
     }
-    function setAmount(key,value){
-        setEarning(prevList =>
-            prevList.map((item, index) =>
-                index === key ? { ...item, amount: Number(value) } : item
+    function setAmount(isEarning,key,value){
+        const numericValue = parseCurrency(value);
+        (isEarning)?
+            setEarning(prevList =>
+                prevList.map((item, index) =>
+                    index === key ? { ...item, amount: Number(numericValue) } : item
+                )
+        ):
+            setDeduction(prevList =>
+                prevList.map((item, index) =>
+                    index === key ? { ...item, amount: Number(numericValue) } : item
+                )
             )
-        );
+        ;
     }
-    function setCheck(key,value){
+    function setCheck(key){
         setEarning(prevList =>
             prevList.map((item, index) =>
                 index === key ? { ...item, isCheck: !item.isCheck } : item
@@ -83,7 +111,7 @@ const salaryForm = ({payEarning,payDeduction,setBasic}) =>{
                 </div>
                 <div className={'sub-header-text'}>Basic Salary</div>
                 <div className={'length-input-container'}>
-                    <input id={'basic_input'} type={'number'} className={'length-input'} placeholder={'Basic Salary'} onChange={(e)=> {setBasic(e.target.value)}}/>
+                    <input id={'basic_input'} type={'text'} value={formatCurrency(basicSalary)} className={'length-input'} placeholder={'Basic Salary'} onChange={(e)=> {handleBasic(e.target.value)}}/>
                 </div>
                 <div className={'sub-header-text'}>Earnings</div>
                 <div className={'field-describe'}>Allowance, Fixed Allowance, Bonus and etc.</div>
@@ -92,12 +120,12 @@ const salaryForm = ({payEarning,payDeduction,setBasic}) =>{
                     {earningList.map((item,key) => (
                         <div className={'pay-detail-container'}>
                             <input type={'text'} value={item.title} placeholder={'Pay Details (Title)'} className={'pay-detail-title'} onChange={(e)=>{setTitle(true,key,e.target.value)}}/>
-                            <input type={'number'} value={item.amount} placeholder={'Amount'} className={'pay-detail-amount'} onChange={(e)=>{setAmount(key,e.target.value)}}/>
+                            <input type={'text'} value={formatCurrency(item.amount)} placeholder={'Amount'} className={'pay-detail-amount'} onChange={(e)=>{setAmount(true,key,e.target.value)}}/>
                             <button className={'cancel-button'} onClick={()=>handleDeleteEarning(item)}>
                                 <img src={cancel} alt={'cancel'}/>
                             </button>
                             <div  className={'pay-detail-checkbox'}>
-                                <input type={"checkbox"} name={'ETP/EPF'} className={'pay-detail-checkbox'} checked={item.isCheck} onChange={(e)=>{setCheck(key,e.target.value)}}/>
+                                <input type={"checkbox"} name={'ETP/EPF'} className={'pay-detail-checkbox'} checked={item.isCheck} onChange={(e)=>{setCheck(key)}}/>
                                 <div className={'pay-check-title'}> ETP/EPF </div>
                             </div>
                         </div>
@@ -119,7 +147,7 @@ const salaryForm = ({payEarning,payDeduction,setBasic}) =>{
                     {deductionList.map((item,key) => (
                         <div className={'pay-detail-container'}>
                             <input type={'text'} value={item.title} placeholder={'Pay Details (Title)'} className={'pay-detail-title'} onChange={(e)=>{setTitle(false,key,e.target.value)}}/>
-                            <input type={'number'} value={item.amount} placeholder={'Amount'} className={'pay-detail-amount'} onChange={(e)=>{setAmount(key,e.target.value)}}/>
+                            <input type={'text'} value={formatCurrency(item.amount)} placeholder={'Amount'} className={'pay-detail-amount'} onChange={(e)=>{setAmount(false,key,e.target.value)}}/>
                             <button className={'cancel-button'} onClick={()=>handleDeleteDeduction(item)}>
                                 <img src={cancel} alt={'cancel'}/>
                             </button>
