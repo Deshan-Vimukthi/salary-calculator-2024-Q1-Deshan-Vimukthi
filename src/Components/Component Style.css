@@ -245,3 +245,28 @@
     from {left: 0;}
     to {left: 40%;}
 }
+
+/*Mobile Responsible*/
+@media only screen and (max-width: 620px){
+    .main-content{
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: inline;
+        row-gap: 5px;
+
+    }
+    .left-content{
+        width: 100vw;
+    }
+    .right-content{
+        margin-top: 10px;
+        width: 100vw;
+    }
+    .pay-detail-container{
+        display: grid;
+        grid-template-columns: 180px 120px 40px 100px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+}
