@@ -7,15 +7,20 @@ const payCheck = ({basicSalary,earning,deduction}) =>{
     let totalEarning = basicSalary;
     let totalEarningForEPF = basicSalary;
     let grossDeduction = 0;
+
+    // eslint-disable-next-line array-callback-return
     earning.map((item)=> {
         totalEarning = totalEarning+item.amount;
         if(item.isCheck){
             totalEarningForEPF = totalEarningForEPF+item.amount;
         }
     });
+
+    // eslint-disable-next-line array-callback-return
     deduction.map((item)=>{
         grossDeduction = grossDeduction+item.amount;
     });
+
     const grossEarning = totalEarning - grossDeduction;
     const grossSalaryForEPF = totalEarningForEPF - grossDeduction;
     function rate(){
