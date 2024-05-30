@@ -10,7 +10,7 @@ function App() {
     useEffect(() => {
         const timer = setTimeout(() => {
             setShowCover(false);
-        }, 5000); // 10 seconds
+        }, 5000); // 5 seconds
 
         // Cleanup the timer if the component is unmounted
         return () => clearTimeout(timer);
