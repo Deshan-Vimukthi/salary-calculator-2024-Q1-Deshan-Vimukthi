@@ -65,7 +65,49 @@ const payCheck = ({basicSalary,earning,deduction}) =>{
                 <div className={'header'}>
                     <div className={'header-text'}>Your salary</div>
                 </div>
-
+                <div className={'paycheck-raw'}>
+                    <div className={'sub-pay-cato'}>Items</div>
+                    <div className={'sub-pay-cato'} style={{textAlign:'right'}}>Amount</div>
+                </div>
+                <div className={'paycheck-raw'}>
+                    <div className={'paycheck-field'}>Basic Salary</div>
+                    <div className={'paycheck-field-amount'}>{formatCurrency(basicSalary)}</div>
+                </div>
+                <div className={'paycheck-raw'}>
+                    <div className={'paycheck-field'}>Gross Earning</div>
+                    <div className={'paycheck-field-amount'}>{formatCurrency(grossEarning)}</div>
+                </div>
+                <div className={'paycheck-raw'}>
+                    <div className={'paycheck-field'}>Gross Deduction</div>
+                    <div className={'paycheck-field-amount'}>{formatCurrency(grossDeduction)}</div>
+                </div>
+                <div className={'paycheck-raw'}>
+                    <div className={'paycheck-field'}>Employee EPF (8%)</div>
+                    <div className={'paycheck-field-amount'}>{formatCurrency(employeeEPF8)}</div>
+                </div>
+                <div className={'paycheck-raw'}>
+                    <div className={'paycheck-field'}>APIT</div>
+                    <div className={'paycheck-field-amount'}>{formatCurrency(APIT)}</div>
+                </div>
+                <div className={'net-salary-container'}>
+                    <div className={'paycheck-raw'}>
+                        <div className={'net-salary-text'}>Net Salary (Take Home)</div>
+                        <div className={'net-salary-amount'}>{formatCurrency(netSalary)}</div>
+                    </div>
+                </div>
+                <div className={'sub-pay-cato'}>Contribution from the Employer</div>
+                <div className={'paycheck-raw'}>
+                    <div className={'paycheck-field'}>Employeer EPF (12%)</div>
+                    <div className={'paycheck-field-amount'}>{formatCurrency(employeeEPF12)}</div>
+                </div>
+                <div className={'paycheck-raw'}>
+                    <div className={'paycheck-field'}>Employeer ETF (3%)</div>
+                    <div className={'paycheck-field-amount'}>{formatCurrency(employeeETF3)}</div>
+                </div>
+                <div className={'paycheck-raw'} style={{marginTop:'15px'}}>
+                    <div className={'paycheck-field'}>CTC (Cost to Company)</div>
+                    <div className={'paycheck-field-amount'}>{formatCurrency(costForCompany)}</div>
+                </div>
             </div>
         </div>
     )

@@ -9,7 +9,7 @@ const salaryForm = ({payEarning,payDeduction,setBasic}) =>{
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [deductionList,setDeduction] = useState([]);
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [basicSalary,setSalary] = useState([]);
+    const [basicSalary,setSalary] = useState(0);
 
     function handleBasic(value){
         const numericValue = parseCurrency(value);
@@ -35,6 +35,9 @@ const salaryForm = ({payEarning,payDeduction,setBasic}) =>{
         earningID = 0;
         deductionID =0;
         setBasic(0);
+        setSalary(0);
+        payDeduction([]);
+        payEarning([]);
         document.getElementById('basic_input').value = '';
     }
 
@@ -57,6 +60,7 @@ const salaryForm = ({payEarning,payDeduction,setBasic}) =>{
                     index === key ? { ...item, title: value } : item
                 )
         );
+        updateData(isEarning);
     }
     function setAmount(isEarning,key,value){
         const numericValue = parseCurrency(value);
@@ -72,6 +76,7 @@ const salaryForm = ({payEarning,payDeduction,setBasic}) =>{
                 )
             )
         ;
+        updateData(isEarning);
     }
     function setCheck(key){
         setEarning(prevList =>
@@ -79,17 +84,22 @@ const salaryForm = ({payEarning,payDeduction,setBasic}) =>{
                 index === key ? { ...item, isCheck: !item.isCheck } : item
             )
         );
+        updateData(true);
     }
 
     function addEarning(){
         earningID++;
         setEarning([...earningList,{id:earningID,title: '',amount: '',isCheck: false}]);
-        payEarning(earningList);
+        updateData(true);
     }
     function addDeduction(){
         deductionID++;
         setDeduction([...deductionList,{id:deductionID,title: '',amount: '',isCheck: false}]);
-        payDeduction(deductionList);
+        updateData(false);
+    }
+
+    function updateData(isEarning){
+        (isEarning)?(payEarning(earningList)):(payDeduction(deductionList));
     }
 
 

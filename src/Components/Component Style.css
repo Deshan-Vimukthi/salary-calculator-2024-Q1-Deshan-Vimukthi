@@ -26,12 +26,16 @@
     position: absolute;
     top: 142px;
     left: 148px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    column-gap: 5px;
+
 }
 .left-content{
-
+ width: 40vw;
 }
 .right-content{
-
+    width: 40vw;
 }
 
 /*Salary Form*/
@@ -134,6 +138,11 @@
 }
 
 /*Pay Check*/
+.paycheck-raw{
+    display: grid;
+    grid-template-columns: auto auto;
+    margin-bottom: 5px;
+}
 .paycheck-field{
     color:#000000;
     font-family: Inter, serif;
@@ -152,10 +161,14 @@
 }
 .net-salary-container{
     width: 100%;
-    border: 0.78px solid #E0E0E0;
+    border: 2px solid #0E0E0E;
     border-right-width: 0;
     border-left-width: 0;
     border-radius: 4px;
+    padding-top: 10px ;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
 }
 .net-salary-amount{
     color:#000000;
@@ -174,6 +187,17 @@
     line-height: 24px;
     letter-spacing: -0.1px;
     text-align: left;
+}
+.sub-pay-cato{
+    color:#757575;
+    font-family: Inter, serif;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.2px;
+    text-align: left;
+    margin-top: 10px;
+    margin-bottom: 5px;
 }
 
 /*Pay Details*/
