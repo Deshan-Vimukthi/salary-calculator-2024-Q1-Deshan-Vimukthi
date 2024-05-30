@@ -60,7 +60,7 @@ const payCheck = ({basicSalary,earning,deduction}) =>{
     const costForCompany = grossEarning + employeeEPF12 + employeeETF3;
 
     return(
-        <div className={'main-form'}>
+        <div className={'main-form'} style={{background:'#E0E0E0'}}>
             <div className={'inner-form'}>
                 <div className={'header'}>
                     <div className={'header-text'}>Your salary</div>
