@@ -7,9 +7,10 @@ const salaryForm = ({payEarning,payDeduction,setBasic}) =>{
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [earningList,setEarning] = useState([{id:0,title:'Travel',amount:10000,isCheck:true},{id:1,title:'',amount:'',isCheck:false}]);
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [deductionList,setDeduction] = useState([]);
+    const [deductionList,setDeduction] = useState([{id:0,title:'No Pay',amount:8000}]);
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [basicSalary,setSalary] = useState(0);
+    setBasic(0);
 
     function handleBasic(value){
         const numericValue = parseCurrency(value);
@@ -19,7 +20,7 @@ const salaryForm = ({payEarning,payDeduction,setBasic}) =>{
 
 
     const formatCurrency = (value) => {
-        return value.toLocaleString('en-US', { style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        return value.toLocaleString('en-US',{style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2 });
     };
 
     const parseCurrency = (value) => {
@@ -60,7 +61,7 @@ const salaryForm = ({payEarning,payDeduction,setBasic}) =>{
                     index === key ? { ...item, title: value } : item
                 )
         );
-        updateData(isEarning);
+        updateData();
     }
     function setAmount(isEarning,key,value){
         const numericValue = parseCurrency(value);
@@ -76,7 +77,7 @@ const salaryForm = ({payEarning,payDeduction,setBasic}) =>{
                 )
             )
         ;
-        updateData(isEarning);
+        updateData();
     }
     function setCheck(key){
         setEarning(prevList =>
@@ -84,24 +85,27 @@ const salaryForm = ({payEarning,payDeduction,setBasic}) =>{
                 index === key ? { ...item, isCheck: !item.isCheck } : item
             )
         );
-        updateData(true);
+        updateData();
     }
 
     function addEarning(){
         earningID++;
         setEarning([...earningList,{id:earningID,title: '',amount: '',isCheck: false}]);
-        updateData(true);
+        updateData();
     }
     function addDeduction(){
         deductionID++;
         setDeduction([...deductionList,{id:deductionID,title: '',amount: '',isCheck: false}]);
-        updateData(false);
+        updateData();
     }
 
-    function updateData(isEarning){
-        (isEarning)?(payEarning(earningList)):(payDeduction(deductionList));
+    function updateData(){
+        payEarning(earningList);
+        payDeduction(deductionList);
+        setBasic(basicSalary);
     }
 
+    updateData();
 
     return(
         <div className={'main-form'}>
@@ -135,7 +139,7 @@ const salaryForm = ({payEarning,payDeduction,setBasic}) =>{
                                 <img src={cancel} alt={'cancel'}/>
                             </button>
                             <div  className={'pay-detail-checkbox'}>
-                                <input type={"checkbox"} name={'ETP/EPF'} className={'pay-detail-checkbox'} checked={item.isCheck} onChange={(e)=>{setCheck(key)}}/>
+                                <input type={"checkbox"} name={'ETP/EPF'} className={'pay-detail-checkbox'} checked={item.isCheck} onChange={()=>{setCheck(key)}}/>
                                 <div className={'pay-check-title'}> ETP/EPF </div>
                             </div>
                         </div>

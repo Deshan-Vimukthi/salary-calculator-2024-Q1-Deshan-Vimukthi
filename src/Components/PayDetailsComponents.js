@@ -1,7 +1,6 @@
 import React from "react";
 import './Component Style.css';
 import cancel from '../image/clear.png'
-import round from '../image/Ellipse 1.png'
 
 const payDetail = ({key,title,amount,deleteHandle,isCheck,isEarning,setTitle,setAmount,setCheck}) =>{
 

@@ -13,12 +13,16 @@
     width: 100vw;
     height: 100vh;
     z-index: 0;
+
 }
 .main-container{
     position: absolute;
     left: 40vw;
     top: 50vh;
     z-index: 10;
+    animation: mymove 1s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in;
 }
 
 /*web layout*/
@@ -234,4 +238,10 @@
     border-width: 0;
     background: #EFEFEF;
     border-radius: 50%;
+}
+
+/*Additional*/
+@keyframes mymove {
+    from {left: 0;}
+    to {left: 40%;}
 }

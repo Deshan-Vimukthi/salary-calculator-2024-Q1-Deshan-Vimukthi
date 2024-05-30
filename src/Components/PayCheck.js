@@ -79,15 +79,15 @@ const payCheck = ({basicSalary,earning,deduction}) =>{
                 </div>
                 <div className={'paycheck-raw'}>
                     <div className={'paycheck-field'}>Gross Deduction</div>
-                    <div className={'paycheck-field-amount'}>{formatCurrency(grossDeduction)}</div>
+                    <div className={'paycheck-field-amount'}> - {formatCurrency(grossDeduction)}</div>
                 </div>
                 <div className={'paycheck-raw'}>
                     <div className={'paycheck-field'}>Employee EPF (8%)</div>
-                    <div className={'paycheck-field-amount'}>{formatCurrency(employeeEPF8)}</div>
+                    <div className={'paycheck-field-amount'}> - {formatCurrency(employeeEPF8)}</div>
                 </div>
                 <div className={'paycheck-raw'}>
                     <div className={'paycheck-field'}>APIT</div>
-                    <div className={'paycheck-field-amount'}>{formatCurrency(APIT)}</div>
+                    <div className={'paycheck-field-amount'}> - {formatCurrency(APIT)}</div>
                 </div>
                 <div className={'net-salary-container'}>
                     <div className={'paycheck-raw'}>
