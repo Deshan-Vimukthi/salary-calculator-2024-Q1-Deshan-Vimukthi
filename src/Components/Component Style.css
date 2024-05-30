@@ -1,0 +1,77 @@
+/*Cover Component*/
+.cover-container{
+    background: linear-gradient(to right,#05291C,#0C5139);
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+
+}
+.background-over-layer{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+}
+.main-container{
+    position: absolute;
+    left: 40vw;
+    top: 50vh;
+    z-index: 10;
+}
+
+/*web layout*/
+.main-content{
+
+}
+.left-content{
+
+}
+.right-content{
+
+}
+
+/*Salary Form*/
+.main-form{
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    background: #E0E0E0;
+    border-width: 0;
+}
+.header{
+    display: grid;
+    grid-template-columns: auto 10%;
+}
+.header-text{
+    font-family: Inter, serif;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 32px;
+    letter-spacing: -0.02px;
+    color: #000000;
+}
+.refresh{
+    display: flex;
+}
+.refresh_image{
+    height: 20px;
+    width: 20px;
+    flex: 1;
+}
+.refresh-text{
+    width: 39px;
+    height: 20px;
+    flex: 1;
+    color: #0052EA;
+    font-family: Inter, serif;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+}
+.sub-header-text{
+
+}
+
+/*Pay Check*/
