@@ -7,13 +7,13 @@ const payCheck = ({basicSalary,earning,deduction}) =>{
     let totalEarning = basicSalary;
     let totalEarningForEPF = basicSalary;
     let grossDeduction = 0;
-    const sum = earning.map((item,key)=>{
+    earning.map((item)=> {
         totalEarning = totalEarning+item.amount;
         if(item.isCheck){
             totalEarningForEPF = totalEarningForEPF+item.amount;
         }
     });
-    const deduc = deduction.map((item,key)=>{
+    deduction.map((item)=>{
         grossDeduction = grossDeduction+item.amount;
     });
     const grossEarning = totalEarning - grossDeduction;
@@ -51,9 +51,9 @@ const payCheck = ({basicSalary,earning,deduction}) =>{
             return 73500
         else return 0}
 
-    const employeeEPF8 = totalEarningForEPF * 8/100;
-    const employeeEPF12 = totalEarningForEPF * 12/100;
-    const employeeETF3 = totalEarningForEPF * 3/100;
+    const employeeEPF8 = grossSalaryForEPF * 8/100;
+    const employeeEPF12 = grossSalaryForEPF * 12/100;
+    const employeeETF3 = grossSalaryForEPF * 3/100;
     const APIT = (grossEarning * rate()/100) - constant();
 
     const netSalary = grossEarning - employeeEPF8 -APIT;
@@ -75,7 +75,7 @@ const payCheck = ({basicSalary,earning,deduction}) =>{
                 </div>
                 <div className={'paycheck-raw'}>
                     <div className={'paycheck-field'}>Gross Earning</div>
-                    <div className={'paycheck-field-amount'}>{formatCurrency(grossEarning)}</div>
+                    <div className={'paycheck-field-amount'}>{formatCurrency(totalEarning)}</div>
                 </div>
                 <div className={'paycheck-raw'}>
                     <div className={'paycheck-field'}>Gross Deduction</div>
