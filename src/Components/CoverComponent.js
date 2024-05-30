@@ -8,7 +8,7 @@ const cover = () =>{
         <div className={'cover-container'}>
             <img src={background} alt={background} className={'background-over-layer'}/>
             <div className={'main-container'}>
-                <img src={logo} alt={'company-Logo'}/>
+                <img src={logo} alt={'{Your Company Logo}'}/>
             </div>
         </div>
     )
