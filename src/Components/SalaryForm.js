@@ -4,13 +4,17 @@ import add from '../image/Vector.png'
 import './Component Style.css'
 import cancel from "../image/clear.png";
 const salaryForm = ({payEarning,payDeduction,setBasic}) =>{
+
+    //Initial Values was set as given in FIGMA Reference
+
+
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [earningList,setEarning] = useState([{id:0,title:'Travel',amount:10000,isCheck:true},{id:1,title:'',amount:'',isCheck:false}]);
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [deductionList,setDeduction] = useState([{id:0,title:'No Pay',amount:8000}]);
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [basicSalary,setSalary] = useState(0);
-    setBasic(0);
+    const [basicSalary,setSalary] = useState(150000);
+    setBasic(basicSalary);
 
     function handleBasic(value){
         const numericValue = parseCurrency(value);
